@@ -1,6 +1,24 @@
 package fraction;
 
+import java.util.ArrayList;
+
 public class FractionImpl implements Fraction {
+    private int numerator;
+    private int denominator;
+
+    //Returns the greatest common factor of two int's
+    public static int GCF(int num1, int num2){
+        //Junit test: GCD(72, -24) == 24
+        num1 = Math.abs(num1);
+        num2 = Math.abs(num2);
+        int div = Math.min(num1, num2);
+        while(div > 1){
+            if (num1 % div == 0 && num2 % div == 0) return div;
+            else div--;
+        }
+        return div;
+    }
+
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Normalize the fraction as you create it.
@@ -13,7 +31,19 @@ public class FractionImpl implements Fraction {
      * @param denominator
      */
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+        int gcf = GCF(numerator, denominator);
+        numerator /= gcf;
+        denominator /= gcf;
+        if (numerator < 0 && denominator < 0) {
+            numerator = Math.abs(numerator);
+            denominator = Math.abs(denominator);
+        }
+        else if (denominator < 0){
+            denominator = Math.abs(denominator);
+            numerator = -numerator;
+        }
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -22,7 +52,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        // TODO
+        this.numerator = wholeNumber;
+        this.denominator = 1;
     }
 
     /**
@@ -37,7 +68,17 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        // TODO
+        String[] frac = fraction.split("/");
+        this.numerator = Integer.parseInt(frac[0]);
+        this.denominator = Integer.parseInt(frac[1]);
+    }
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
     }
 
     /**
