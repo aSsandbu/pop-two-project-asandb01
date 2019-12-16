@@ -68,9 +68,15 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        String[] frac = fraction.split("/");
-        this.numerator = Integer.parseInt(frac[0]);
-        this.denominator = Integer.parseInt(frac[1]);
+        if (fraction.length() > 2){
+            String[] frac = fraction.split("/");
+            this.numerator = Integer.parseInt(frac[0]);
+            this.denominator = Integer.parseInt(frac[1]);
+        }
+        else {
+            this.numerator = Integer.parseInt(fraction);
+            this.denominator = 1;
+        }
     }
 
     public int getNumerator() {
