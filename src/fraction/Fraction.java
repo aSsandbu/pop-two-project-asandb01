@@ -12,7 +12,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to add to the current fraction
      * @return the result of the addition
      */
-    public Fraction add(Fraction f);
+    public FractionImpl add(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>difference</em> of <pre>this</pre> minus the parameter
@@ -21,7 +21,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to subtract from the current fraction
      * @return the result of the subtraction
      */
-    public Fraction subtract(Fraction f);
+    public FractionImpl subtract(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>product</em> of <pre>this</pre> and the parameter
@@ -30,7 +30,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to multiply with the current fraction
      * @return the result of the multiplication
      */
-    public Fraction multiply(Fraction f);
+    public FractionImpl multiply(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>quotient</em> of dividing <pre>this</pre> by the parameter
@@ -39,14 +39,14 @@ public interface Fraction extends Comparable<Fraction> {
      * @param f the fraction to take part in the division
      * @return the result of the division
      */
-    public Fraction divide(Fraction f);
+    public FractionImpl divide(FractionImpl f);
 
     /**
      * Returns a new <pre>Fraction</pre> that is the <em>absolute value</em> of <pre>this</pre> fraction
      *
      * @return the absolute value of the fraction as a new fraction
      */
-    public Fraction abs();
+    public FractionImpl abs();
 
     /**
      * Returns a new <pre>Fraction</pre> that has the same numeric value of <pre>this</pre> fraction,
@@ -54,14 +54,14 @@ public interface Fraction extends Comparable<Fraction> {
      *
      * @return the newly negated fraction
      */
-    public Fraction negate();
+    public FractionImpl negate();
 
     /**
      * The inverse of <pre>a/b</pre> is <pre>b/a</pre>.
      *
      * @return the newly inverted fraction
      */
-    public Fraction inverse();
+    public FractionImpl inverse();
 
     /**
      * Returns <pre>true</pre> if <pre>o</pre> is a <pre>Fraction</pre> equal to <pre>this</pre>,
@@ -85,7 +85,7 @@ public interface Fraction extends Comparable<Fraction> {
      * @return the result of the comparison
      */
     @Override
-    public int compareTo(Fraction f);
+    public int compareTo(FractionImpl f);
 
     /**
      * Returns a <pre>String</pre> of the form <pre>n/d</pre>, where <pre>n</pre> is the
