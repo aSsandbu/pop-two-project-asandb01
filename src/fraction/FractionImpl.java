@@ -8,18 +8,18 @@ public class FractionImpl implements Fraction {
     static int GCD(int num1, int num2){
         num1 = Math.abs(num1);
         num2 = Math.abs(num2);
-        int result = -1;
+        int temp = -1;
         if (num1 > num2) {
-            int temp = num2;
+            temp = num2;
             num2 = num1;
             num1 = temp;
         }
-        while (result != 0){
-            result = num2 % num1;
+        while (temp != 0){
+            temp = num2 % num1;
             num2 = num1;
-            num1 = result;
+            num1 = temp;
         }
-        return result;
+        return num2;
         //int div = Math.min(num1, num2);
         //while(div > 1){
         //    if (num1 % div == 0 && num2 % div == 0) return div;
@@ -84,14 +84,14 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(String fraction) throws ArithmeticException {
         fraction = fraction.replaceAll("\\s+",""); //clear spaces, tabs
-        if (fraction.length() > 2){
+        if (fraction.length() > 2){ //String of format: "2/-5"
             String[] frac = fraction.split("/");
             this.numerator = Integer.parseInt(frac[0]);
             int denom = Integer.parseInt(frac[1]);
             if (denom != 0) this.denominator = denom;
             else throw new ArithmeticException("Divide by zero");
         }
-        else {
+        else { //String of format: "-5"
             this.numerator = Integer.parseInt(fraction);
             this.denominator = 1;
         }
@@ -102,7 +102,7 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public Fraction add(FractionImpl f) {
+    public FractionImpl add(FractionImpl f) {
         //a/b + c/d is (ad + bc)/bd
         int numerator = this.numerator * f.denominator + this.denominator * f.numerator;
         int denominator = this.denominator * f.denominator;
@@ -170,7 +170,7 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) throws IllegalArgumentException {
         if (obj.getClass().getName() == "FractionImpl") return super.equals(obj);
         else throw new IllegalArgumentException("Argument supplied not an instance of FractionImpl");
     }
@@ -197,9 +197,14 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int compareTo(FractionImpl o) {
+    public int compareTo(Fraction o) throws IllegalArgumentException {
         double value1 = (double) this.numerator / this.denominator;
-        double value2 = (double) o.numerator / o.denominator;
+        double value2;
+        FractionImpl o2 = (FractionImpl) o;
+        if (o.getClass().getName() == "FractionImpl") {
+            value2 = (double) o2.numerator / o2.denominator;
+        }
+        else throw new IllegalArgumentException("Argument not of type FractionImpl");
         if (value1 == value2) return 0;
         else if (value1 < value2) return -1;
         else return 1;

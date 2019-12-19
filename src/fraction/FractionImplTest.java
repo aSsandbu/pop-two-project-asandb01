@@ -7,8 +7,8 @@ class FractionImplTest {
 
     @org.junit.jupiter.api.Test
     void GCD() {
-        assertEquals(24, FractionImpl.GCD(72,-24));
-        assertEquals(1, FractionImpl.GCD(12,1));
+        assertEquals(1, FractionImpl.GCD(12,1), "Failed GCD test1 (simple)");
+        assertEquals(24, FractionImpl.GCD(72,-24), "Failed GCD test2 (negative factorization)");
     }
 
     //normalize() is tested within constructor tests
