@@ -205,12 +205,12 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int compareTo(Fraction o) throws IllegalArgumentException {
+    public int compareTo(Fraction f) throws IllegalArgumentException {
         double value1 = (double) this.numerator / this.denominator;
         double value2;
-        FractionImpl o2 = (FractionImpl) o;
-        if (o.getClass().getName() == "FractionImpl") {
-            value2 = (double) o2.numerator / o2.denominator;
+        FractionImpl other = (FractionImpl) f;
+        if (getClass() == other.getClass()) {
+            value2 = (double) other.numerator / other.denominator;
         }
         else throw new IllegalArgumentException("Argument not of type FractionImpl");
         if (value1 == value2) return 0;

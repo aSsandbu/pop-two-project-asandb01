@@ -163,25 +163,46 @@ class FractionImplTest {
 
     @org.junit.jupiter.api.Test
     void testHashCode() {
+        //not required to implement for assignment
     }
 
     @org.junit.jupiter.api.Test
-    void testEquals() {
+    void equals() {
+        FractionImpl fracEqual1 = new FractionImpl("2/3");
+        FractionImpl fracEqual2 = new FractionImpl(2, 3);
+        assertTrue(fracEqual1.equals(fracEqual2), "Failed equals test1");
     }
 
     @org.junit.jupiter.api.Test
     void testClone() {
+        //not required to implement for assignment
     }
 
     @org.junit.jupiter.api.Test
     void inverse() {
+        FractionImpl fracInv = new FractionImpl(2, 1);
+        FractionImpl fracInvResult = new FractionImpl(1, 2);
+        assertEquals(fracInv.inverse(), fracInvResult, "Failed inverse test1");
     }
 
     @org.junit.jupiter.api.Test
     void compareTo() {
+        FractionImpl fracComp1 = new FractionImpl(2);
+        FractionImpl fracComp2 = new FractionImpl(2);
+        assertEquals(fracComp1.compareTo(fracComp2), 0, "Failed compareTo test1 (equal)");
+
+        FractionImpl fracComp3 = new FractionImpl(2);
+        FractionImpl fracComp4 = new FractionImpl(10);
+        assertEquals(fracComp3.compareTo(fracComp4), -1, "Failed compareTo test2 (this less than other)");
+
+        FractionImpl fracComp5 = new FractionImpl(10);
+        FractionImpl fracComp6 = new FractionImpl(2);
+        assertEquals(fracComp5.compareTo(fracComp6), 1, "Failed compareTo test3 (this greater than other)");
     }
 
     @org.junit.jupiter.api.Test
     void testToString() {
+        FractionImpl fracToString = new FractionImpl(10, 7);
+        assertEquals(fracToString.toString(), "10/7", "Failed toString test1");
     }
 }
