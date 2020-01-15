@@ -140,7 +140,7 @@ class FractionImplTest {
 
         FractionImpl fracDiv5 = new FractionImpl("12/13");
         FractionImpl fracDiv6 = new FractionImpl("6/7");
-        FractionImpl fracResult3 = new FractionImpl("13/14");
+        FractionImpl fracResult3 = new FractionImpl("14/13");
         assertEquals(fracDiv5.divide(fracDiv6), fracResult3, "Failed divide test3 (zero result)");
     }
 

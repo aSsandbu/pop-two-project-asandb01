@@ -7,15 +7,19 @@ public class FractionImpl implements Fraction {
     private int denominator;
 
     //Returns the greatest common factor of two int's, helper for normalize()
+    //and by extension the constructors
     static int GCD(int num1, int num2){
+        if (num1 == 0) return num2; //zero numerator
         num1 = Math.abs(num1);
         num2 = Math.abs(num2);
         int temp = -1;
+        //the while that follows assumes num2 is the greater number
         if (num1 > num2) {
             temp = num2;
             num2 = num1;
             num1 = temp;
         }
+
         while (temp != 0){
             temp = num2 % num1;
             num2 = num1;
@@ -35,11 +39,12 @@ public class FractionImpl implements Fraction {
         int gcd = GCD(numerator, denominator);
         numerator /= gcd;
         denominator /= gcd;
-        if (numerator < 0 && denominator < 0) {
+        if (numerator < 0 && denominator < 0) //both negative factoring
+        {
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
         }
-        else if (denominator < 0){
+        else if (denominator < 0){ //negative denominator factoring
             denominator = Math.abs(denominator);
             numerator = -numerator;
         }
@@ -86,14 +91,14 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(String fraction) throws ArithmeticException {
         fraction = fraction.replaceAll("\\s+",""); //clear spaces, tabs
-        if (fraction.length() > 2){ //String of format: "2/-5"
+        if (fraction.contains("/")){ //String of format: "2/-5"
             String[] frac = fraction.split("/");
             this.numerator = Integer.parseInt(frac[0]);
             int denom = Integer.parseInt(frac[1]);
             if (denom != 0) this.denominator = denom;
             else throw new ArithmeticException("Divide by zero");
         }
-        else { //String of format: "-5"
+        else { //String of format: "5", "-14"
             this.numerator = Integer.parseInt(fraction);
             this.denominator = 1;
         }
